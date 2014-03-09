@@ -1,0 +1,7 @@
+Version 2.0.2   2014.03.09
+Added  添加配置界面类型列表实时显示颜色
+Modify 修改配置界面逻辑和获取菜单的问题
+Modity 其它不经意的修改
+
+Version 2.0.1
+上传到 Github
