@@ -138,7 +138,7 @@ Toolbar_Add(hGui, Handler, Style="", ImageList="", Pos="") {
 
 	if (ImageList != "") ; if there's a valid image list, set it
 		Toolbar_SetImageList(hCtrl, ImageList)
-
+	
 	if IsFunc(Handler) ; store handler callback
 		Toolbar(hCtrl "Handler", Handler)
 
