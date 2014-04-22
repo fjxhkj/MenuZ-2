@@ -608,6 +608,7 @@ class PUM_Menu extends PUM_base
   
   Add( params = "", pos = -1, fByPos = True )
   {
+		this.IsAddLine := params.name
     if !this.alive
       return 0
     id := ++this.objPUM._itemsCount
@@ -615,6 +616,11 @@ class PUM_Menu extends PUM_base
     this.objPUM._items[ id ] := item
     item.setParams( params, pos, fByPos )
     return item
+  }
+  ; 防止出现两横（分割符）
+  Prev_Item_Not_Separator()
+  {
+	return this.IsAddLine
   }
   
   SetParams( params )
