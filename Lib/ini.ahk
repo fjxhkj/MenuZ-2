@@ -105,7 +105,7 @@ Class INI {
 		p := this.filePath
 		iniwrite,%string%,%p%,%section%,%key%
 		;msgbox % section "`n" key "`n" string
-		this.content[section "`n" key] := string
+		;this.content[section "`n" key] := string
 		;this.Read()
 	}
 
