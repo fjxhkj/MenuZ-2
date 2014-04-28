@@ -50,7 +50,6 @@ Class INI {
 			{
 				idx := this.content[sec "`nnumber"] + 1
 				this.content[sec "`nnumber"] := idx
-				;this.content[sec "`nnumber" idx] := k "=" v
 				this.content[sec "`nnumber" idx] := A_LoopField
 			}
 			If sec = Env 
@@ -104,11 +103,33 @@ Class INI {
 			return
 		p := this.filePath
 		iniwrite,%string%,%p%,%section%,%key%
-		;msgbox % section "`n" key "`n" string
-		;this.content[section "`n" key] := string
-		;this.Read()
+/*
+		If this.GetKeys(section)
+		{
+			idx := this.content[section "`nnumber"] + 1
+			this.content[section "`nnumber"] := idx
+		}
+		Else
+		{
+			idx := 1
+			this.content[section "`nnumber"] := 1
+		}
+		this.content[section "`nnumber" idx] := key "=" string
+		this.content[section "`nall"] .= key "=" string
+		this.content[section "`nkeys"] .= key "`n"
+		this.content[section "`nkeyValue"] .= key "=" string "`n"
+		this.content[section "`n" key] := string
+		If section = Env 
+		{
+			e := []
+			e.vaild := True
+			e.var   := This.ReplaceEnv(string)
+			this.Env[key] := e
+			If RegExMatch(this.filepath,"i)\\menuz\.ini$")
+				GlobalSetEnvs(key,e)
+		}
+*/
 	}
-
 	iniread(section,key,default=""){
 		p := this.filePath
 		iniread,v,%p%,%section%,%key%,%default%
@@ -177,7 +198,7 @@ Class INI {
 		return RTrim(r,"`n")
 	}
 	GetKeyCount(section){
-		return this.content[section "`nnumber"]
+		return (c := this.content[section "`nnumber"]) ? c : 0
 	}
 	; GetKeys(section) {{{2
 	GetKeys(section) {
@@ -196,6 +217,7 @@ Class INI {
 	}
 	; GetValueN(section,idx) {{{2
 	GetValueN(section,idx) {
+		this.CheckTime()
 		LoopString := this.GetKeyValueN(section,idx)
 		return 	Trim(SubStr(LoopString,InStr(LoopString, "=") + 1))
 	}
